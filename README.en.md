@@ -2,13 +2,15 @@
 
 [日本語](README.md) | [English](README.en.md)
 
-A **UI compiler for the LILYGO T-Display S3** that turns HTML/CSS into C++ for LVGL.
+A **UI compiler for ESP32 displays** that turns HTML/CSS into C++ for LVGL.
 Define the appearance in HTML/CSS, then handle value updates and clicks in C++.
 HTML/CSS is parsed on your computer at build time; the ESP32 runs the generated code and LVGL.
 
 The project is currently in **early development (v0.1.0)**.
 It supports generating screens with labels and buttons, displaying them on the device, and navigating them with physical buttons.
 See the table below and the [supported features](docs/support.md) (Japanese) for the current HTML/CSS subset.
+Alongside the T-Display S3 color display, an example supports **ESP32 + SSD1306 monochrome OLEDs (I²C, 128 × 64)**.
+The SSD1306 example has passed build and host-rendering checks; physical OLED output has not yet been tested.
 
 ![T-Display S3 sample showing text wrapping and RGB text colors](docs/images/layout-check.png)
 
@@ -16,16 +18,16 @@ This is 320 × 170 rendering data captured from the device, rather than a photog
 Physical button operation and the display have also been checked by a person.
 The [hardware test results](docs/hardware-results-2026-10-15.md) (Japanese) document the automated checks and verification methods.
 
-[Quick start](#quick-start) / [Comparison](#how-it-compares) / [Supported features](docs/support.md) / [C++ API](docs/getting-started.md#c-api)
+[Choose a display](#choose-a-display) / [Quick start](#quick-start) / [Comparison](#how-it-compares) / [C++ API](docs/getting-started.md#c-api)
 
 ## Why esp-html-ui?
 
 **Style the screen in HTML/CSS. Drive the device in C++.**
-It is intended for developers who want to edit label-and-button screens using familiar web syntax and integrate them into a T-Display S3 application.
+It is intended for developers who want to edit label-and-button screens using familiar web syntax and integrate them into an ESP32 application.
 
 - **Review screen changes as HTML/CSS diffs.** Edit structure, colors, and spacing in your usual editor, and share styles through CSS inheritance and custom properties.
 - **Keep application logic in C++.** Use HTML IDs to update text and handle click events. HTML/CSS parsing happens at build time; the device runs the generated C++ and LVGL.
-- **Start with a T-Display S3 workflow.** The examples include display and physical button configuration, with automatic code generation before PlatformIO builds. The repository also includes [automated diagnostics and rendering capture](docs/hardware-testing.md) (Japanese).
+- **Start with color display and monochrome OLED examples.** Code generation runs before PlatformIO builds, with resolution and display drivers configured by the application. T-Display S3 also has [automated diagnostics and rendering capture](docs/hardware-testing.md) (Japanese).
 
 ## How it compares
 
@@ -34,14 +36,14 @@ It is based on official documentation reviewed on October 15, 2026.
 
 | Option | Main UI authoring approach | Application integration |
 | --- | --- | --- |
-| **esp-html-ui** | **A defined subset of HTML/CSS** | **Generates C++ for LVGL; includes PlatformIO examples for T-Display S3** |
+| **esp-html-ui** | **A defined subset of HTML/CSS** | **Generates C++ for LVGL; includes examples for T-Display S3 and ESP32 + SSD1306** |
 | [SquareLine Studio](https://docs.squareline.io/docs/introduction/typical_dev/) | Configure widgets and events in a GUI | Exports C/C++ for LVGL, among other options |
 | [EEZ Studio](https://www.envox.eu/studio/studio-introduction/) | Visual editor, with optional EEZ Flow | Creates LVGL screens; Flow can also describe application logic |
 | [LVGL Pro](https://lvgl.io/docs/pro/integration/using-exported-c-code) | Work with XML through an editor or CLI | Generates C for LVGL from XML |
 | [lvgljs](https://github.com/lvgl/lv_binding_js) | JavaScript using concepts from React | Uses a JavaScript runtime and LVGL bindings |
 
 Code generation and CLI automation are also available in other tools.
-esp-html-ui focuses on **connecting HTML/CSS authoring to C++ application logic and T-Display S3 builds**.
+esp-html-ui focuses on **connecting HTML/CSS authoring to C++ application logic and ESP32 builds**.
 Its current scope is screens built around labels and buttons.
 If you need images, multilingual text, more input widgets, or visual editing, also check the capabilities of the other tools.
 The [detailed comparison](docs/comparison.en.md) covers Evue, which also uses HTML/CSS, suggested use cases, and official sources.
@@ -65,6 +67,19 @@ JavaScript is not executed; application behavior is implemented in C++.
 Japanese fonts, images, text and selection inputs, Grid, dynamic CSS pseudo-classes, and CSS animations are not yet supported.
 See the [support reference](docs/support.md) for accepted values, units, and browser differences, and the [specification](docs/spec.md) for planned work (both in Japanese).
 
+## Choose a display
+
+The compiler and C++ runtime are display-independent.
+The application connects the LVGL display driver and resolution.
+
+| Configuration | Examples | Verification |
+| --- | --- | --- |
+| LILYGO T-Display S3, ST7789, 320 × 170 | [counter](examples/counter), [layout-check](examples/layout-check) | Builds, host rendering, physical display and buttons |
+| ESP32 Dev Module + I²C SSD1306, 128 × 64 | [ssd1306](examples/ssd1306) | Build, host rendering and pixel conversion; OLED hardware not yet tested |
+
+See [display integration](docs/displays.en.md) for SSD1306 wiring, flashing, and porting to other displays.
+The quick start below uses the hardware-tested T-Display S3.
+
 ## Quick start
 
 ### Requirements
@@ -74,7 +89,7 @@ See the [support reference](docs/support.md) for accepted values, units, and bro
 - Python 3.10 or newer and Git.
 - Internet access for the initial dependency and toolchain downloads.
 
-The board configuration and hardware tests in this repository target the standard T-Display S3.
+The board configuration and hardware tests for this quick start target the standard T-Display S3.
 Models with other displays, such as the AMOLED version, require different configuration.
 
 ### 1. Set up the environment
@@ -145,6 +160,7 @@ Code generation runs before every build, and the generated code is compiled into
 | --- | --- | --- |
 | [counter](examples/counter) | Increment, reset, and focus navigation | [ui.html](examples/counter/ui.html), [ui.css](examples/counter/ui.css) |
 | [layout-check](examples/layout-check) | Long text wrapping, RGB text colors, and button layout | [ui.html](examples/layout-check/ui.html), [ui.css](examples/layout-check/ui.css) |
+| [ssd1306](examples/ssd1306) | 128 × 64 monochrome layout, increment and reset over serial | [ui.html](examples/ssd1306/ui.html), [ui.css](examples/ssd1306/ui.css) |
 
 To flash the layout sample shown above:
 
@@ -163,13 +179,14 @@ ui.html + ui.css
        ↓ Parse, resolve CSS, and validate supported features on the host
 Generated C++ + JSON generation manifest
        ↓ Compile with PlatformIO
-LVGL + TFT_eSPI on the ESP32
+LVGL + display driver on the ESP32
        ↓
-T-Display S3 display and physical buttons
+Color display / monochrome OLED, application input
 ```
 
 The compiler uses html5lib to parse HTML, tinycss2 to parse CSS, and cssselect2 to match selectors.
-LVGL handles rendering, layout, and input; TFT_eSPI transfers pixels to the display.
+LVGL handles rendering, layout, and input.
+TFT_eSPI transfers pixels on T-Display S3; Adafruit SSD1306 handles OLED transfers in the SSD1306 example.
 
 You can also try compilation without connecting a device:
 
@@ -206,6 +223,7 @@ The detailed guides below are in Japanese unless marked otherwise.
 | --- | --- |
 | [Build and usage guide](docs/getting-started.md) | Setup, generated files, pinned major dependencies, and C++ API |
 | [Supported features](docs/support.md) | Tags, attributes, CSS values and limitations, and browser differences |
+| [Display integration](docs/displays.en.md) (English) | SSD1306 wiring and controls, resolution settings, and porting |
 | [Comparison with other UI tools](docs/comparison.en.md) (English) | Authoring formats, code generation, runtimes, and use cases |
 | [Specification and completion criteria](docs/spec.md) | Project goals and planned design |
 | [T-Display S3 hardware testing](docs/hardware-testing.md) | Diagnostic firmware, log and image capture, and manual button tests |

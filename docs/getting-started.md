@@ -30,7 +30,9 @@ esp-html-ui compile examples/counter/ui.html --output build/generated --name cou
 python -m platformio run -d examples/counter
 ```
 
-ビルド前フックが毎回HTML/CSSを検証し、`examples/counter/generated/`に生成する。内容が変わらないファイルは更新しない。変換が失敗するとファームウェアのビルドも失敗する。
+ビルド前フックが毎回HTML/CSSを検証し、`examples/counter/generated/t-display-s3/counter/`に生成する。内容が変わらないファイルは更新しない。変換が失敗するとファームウェアのビルドも失敗する。
+
+SSD1306向けサンプル、解像度の設定、別ディスプレイへの移植は[ディスプレイへの組み込み](displays.md)を参照する。
 
 固定した主要依存:
 
@@ -99,6 +101,6 @@ python -m unittest discover -s tests -v
 python scripts/test_native.py --lvgl examples/counter/.pio/libdeps/t-display-s3/lvgl
 ```
 
-後者はGCC/G++と`ar`があるLinux向け。LVGL 9.4.0の実際のソースをビルドし、生成UIの配置・描画・値更新・クリック・フォーカス・削除後の参照と、100回の作成／破棄でLVGLの空きメモリが戻ることを検証する。
+後者はGCC/G++または互換のClangと`ar`があるホスト向け。LVGL 9.4.0の実際のソースをビルドし、生成UIの配置・描画・値更新・クリック・フォーカス・削除後の参照と、100回の作成／破棄でLVGLの空きメモリが戻ることを検証する。
 
-描画結果は`.build/native/counter.ppm`。これはホスト上の描画であり、液晶ドライバや物理ボタンの実機検証を代替しない。
+描画結果は`.build/native/counter/counter.ppm`。これはホスト上の描画であり、液晶ドライバや物理ボタンの実機検証を代替しない。

@@ -6,10 +6,14 @@ Import("env")
 
 project = Path(env.subst("$PROJECT_DIR"))
 repository = project.parents[1]
-generated = project / "generated"
+name = env.GetProjectOption("custom_ui_name", "counter")
+width = env.GetProjectOption("custom_ui_width", "320")
+height = env.GetProjectOption("custom_ui_height", "170")
+# Keep environments and UI names separate so changing a target cannot reuse stale C++.
+generated = project / "generated" / env.subst("$PIOENV") / name
 subprocess.run([
     env.subst("$PYTHONEXE"), "-m", "esp_html_ui", "compile", str(project / "ui.html"),
-    "--output", str(generated), "--name", "counter", "--width", "320", "--height", "170",
+    "--output", str(generated), "--name", name, "--width", width, "--height", height,
 ], check=True)
 # BuildSources clones this environment before PlatformIO adds library includes.
 lvgl = Path(env.subst("$PROJECT_LIBDEPS_DIR")) / env.subst("$PIOENV") / "lvgl"

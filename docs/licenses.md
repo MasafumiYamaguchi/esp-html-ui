@@ -7,6 +7,7 @@
 - ホスト: html5lib 1.1、tinycss2 1.4.0、cssselect2 0.8.0と、six 1.17.0、webencodings 0.5.1。
 - 描画: LVGL 9.4.0。内包するTLSF、printf、Montserrat、Font Awesomeの通知も保存。
 - 液晶ドライバ: TFT_eSPI 2.5.43。オプションのフォントパックは使わない。
+- OLEDサンプル: Adafruit SSD1306 2.5.15、Adafruit GFX Library 1.12.1、Adafruit BusIO 1.17.2。固定した版の通知を保存。
 - 基板のフレームワーク: Arduino-ESP32 2.0.17（PlatformIOパッケージ3.20017.241212+sha.dcc1105b）、espressif32 6.9.0。
 
 Arduino APIにはLGPL-2.1-or-laterの部分がある。LVGLやコンパイラ依存のMIT/BSDとは別の条件として扱う。ファームウェアを配布する前に、Arduino・SDK・プリコンパイル済みライブラリ・C/C++ランタイムを含むリンク済み構成を棚卸しし、ソース提供・再リンクなど適用される条件を確認する。
@@ -19,6 +20,9 @@ Arduino APIにはLGPL-2.1-or-laterの部分がある。LVGLやコンパイラ依
 python scripts/collect_notices.py \
   --lvgl examples/counter/.pio/libdeps/t-display-s3/lvgl \
   --tft examples/counter/.pio/libdeps/t-display-s3/TFT_eSPI \
+  --ssd1306 'examples/ssd1306/.pio/libdeps/esp32-ssd1306/Adafruit SSD1306' \
+  --gfx 'examples/ssd1306/.pio/libdeps/esp32-ssd1306/Adafruit GFX Library@1.12.1' \
+  --busio 'examples/ssd1306/.pio/libdeps/esp32-ssd1306/Adafruit BusIO@1.17.2' \
   --webencodings-license third_party/notices/webencodings.txt
 ```
 

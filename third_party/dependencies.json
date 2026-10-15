@@ -71,6 +71,33 @@
     },
     {
       "license": "BSD-3-Clause",
+      "name": "adafruit_ssd1306",
+      "notice": "notices/adafruit_ssd1306.txt",
+      "scope": "SSD1306 example firmware",
+      "sha256": "4b6bb6d827e9da638841bf575c6068b83aaaf0d9508e892d3ea27e2525b070e8",
+      "source": "https://github.com/adafruit/Adafruit_SSD1306/blob/2.5.15/license.txt",
+      "version": "2.5.15"
+    },
+    {
+      "license": "BSD-2-Clause",
+      "name": "adafruit_gfx",
+      "notice": "notices/adafruit_gfx.txt",
+      "scope": "SSD1306 example firmware",
+      "sha256": "3e7bede50526352926c2283e640f2823d9f9f2165d1852044c4fb1bbac283106",
+      "source": "https://github.com/adafruit/Adafruit-GFX-Library/blob/1.12.1/license.txt",
+      "version": "1.12.1"
+    },
+    {
+      "license": "MIT",
+      "name": "adafruit_busio",
+      "notice": "notices/adafruit_busio.txt",
+      "scope": "SSD1306 example firmware",
+      "sha256": "86e9fafdb50d2a85d8fef369b4635b5a1b89160603e5b1f95484df0804b49508",
+      "source": "https://github.com/adafruit/Adafruit_BusIO/blob/1.17.2/LICENSE",
+      "version": "1.17.2"
+    },
+    {
+      "license": "BSD-3-Clause",
       "name": "lvgl_tlsf",
       "notice": "notices/lvgl_tlsf.txt",
       "scope": "firmware",

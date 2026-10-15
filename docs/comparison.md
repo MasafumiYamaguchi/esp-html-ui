@@ -2,7 +2,7 @@
 
 [日本語](comparison.md) | [English](comparison.en.md)
 
-esp-html-uiは、HTML/CSSからT-Display S3向けのLVGL用C++を生成するツールである。
+esp-html-uiは、HTML/CSSからESP32のディスプレイ向けのLVGL用C++を生成するツールである。
 画面の構造とスタイルをテキストで編集し、操作時の処理をC++で書く用途に向いている。
 比較では、入力する形式、生成するコード、実機上で動かすものを分けて考える。
 
@@ -14,7 +14,7 @@ esp-html-uiは、HTML/CSSからT-Display S3向けのLVGL用C++を生成するツ
 
 | 選択肢 | UIの入力 | 生成または実行の方式 | 選ぶ理由となる用途 |
 | --- | --- | --- | --- |
-| **esp-html-ui 0.1** | 対応範囲を定めたHTML/CSS | ビルド時にC++へ変換。実機では生成コード、本体のC++ランタイム、LVGL、液晶ドライバを動かす | HTML/CSSでラベルとボタンの画面を編集し、T-Display S3のC++アプリへ組み込む |
+| **esp-html-ui 0.1** | 対応範囲を定めたHTML/CSS | ビルド時にC++へ変換。実機では生成コード、本体のC++ランタイム、LVGL、液晶ドライバを動かす | HTML/CSSでラベルとボタンの画面を編集し、ESP32のC++アプリへ組み込む |
 | [LVGLのC API](https://lvgl.io/docs/open/9.4/details/widgets/index.html) | C/C++でウィジェットとスタイルを定義 | アプリからLVGLを直接呼び出す | LVGLの部品やスタイルを直接扱う |
 | [SquareLine Studio](https://docs.squareline.io/docs/introduction/typical_dev/) | GUIでウィジェット、スタイル、イベントを設定 | 画面、画像、フォントなどのCファイルを出力し、アプリへ組み込む | 画面を見ながら配置とイベントを編集する |
 | [EEZ Studio](https://www.envox.eu/studio/studio-introduction/) | ビジュアルエディター。LVGLとLVGL＋Flowの構成がある | LVGL向けの画面を作成。EEZ Flowを使うと処理もビジュアルに記述できる | 画面と処理の流れをエディター内で編集する |
@@ -36,20 +36,23 @@ HTMLのIDを使う[参照と更新のAPI](getting-started.md#c-api)で、表示�
 [実機試験ツール](hardware-testing.md)には、入力注入、画面作成と破棄、液晶メモリの読み戻し、描画データの回収をまとめている。
 これは本プロジェクトに用意した試験手段であり、他ツールと比べた性能の優位性を示すものではない。
 
+ESP32＋SSD1306の128×64向けにも、白黒OLED用の[サンプルと移植手順](displays.md)を用意している。
+SSD1306はビルドとホスト描画を検証済みであり、OLED実機での表示は未確認である。
+
 ## 共通する機能と異なる入力
 
 コード生成とビルドの自動化には、複数の選択肢がある。
 [SquareLine StudioのCLI](https://docs.squareline.io/docs/commandline/)は、プロジェクトからのエクスポートを自動化できる。
 [LVGL Proのコード生成](https://lvgl.io/docs/pro/integration/using-exported-c-code)は、エディターとCLIの両方に対応し、生成したCを使う場合には実機にXMLファイルを残す必要もない。
-esp-html-uiの違いは、HTML/CSSの解析とCSSの解決をPC上で行い、生成したC++をT-Display S3向けのビルドへつなぐ点にある。
+esp-html-uiの違いは、HTML/CSSの解析とCSSの解決をPC上で行い、生成したC++をESP32向けのビルドへつなぐ点にある。
 
 HTML/CSSをUIの入力に使う取り組みも、esp-html-uiに限られない。
 [Evueの公式README](https://github.com/scriptiot/evue)は、HTML/CSSを基にした記述からPythonやJavaScriptへ変換する構成を説明している。
-esp-html-uiはC++への変換を実装し、対応するHTML/CSSとT-Display S3向けの組み込み手順を定めている。
+esp-html-uiはC++への変換を実装し、対応するHTML/CSSと、カラー液晶や白黒OLEDへの組み込み手順を定めている。
 
 ## 現在の選択範囲
 
-HTML/CSSに慣れていて、T-Display S3に値の表示やボタン操作を加えたい場合は、esp-html-uiのサンプルから試せる。
+HTML/CSSに慣れていて、ESP32のディスプレイに値の表示やボタン操作を加えたい場合は、esp-html-uiのサンプルから試せる。
 UIの編集、C++からの更新、書き込み、実機での確認を一通り行える。
 現在の対応は[タグとCSSの一覧](support.md)、確認済みの動作は[実機試験結果](hardware-results-2026-10-15.md)を参照する。
 

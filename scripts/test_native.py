@@ -21,6 +21,7 @@ def run(command):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--lvgl", required=True, type=Path, help="LVGL 9.4.0 source directory")
+    parser.add_argument("--example", choices=["counter", "ssd1306"], default="counter")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     lvgl = args.lvgl.resolve()
@@ -28,10 +29,13 @@ def main():
         parser.error("--lvgl must contain lvgl.h")
     if json.loads((lvgl / "library.json").read_text())["version"] != "9.4.0":
         parser.error("Use the pinned LVGL 9.4.0 dependency")
-    config = root / "examples/counter/config"
-    build = root / ".build/native"
+    example = root / "examples" / args.example
+    config = example / "config"
+    name = "oled" if args.example == "ssd1306" else "counter"
+    build = root / ".build/native" / args.example
     build.mkdir(parents=True, exist_ok=True)
-    for filename, content in generate(compile_document(root / "examples/counter/ui.html")).items():
+    viewport = {"width": 128, "height": 64} if args.example == "ssd1306" else {}
+    for filename, content in generate(compile_document(example / "ui.html", name=name, **viewport)).items():
         (build / filename).write_text(content, encoding="utf-8")
 
     flags = ["-O1", "-g", "-DLV_CONF_INCLUDE_SIMPLE", "-I" + str(lvgl), "-I" + str(config)]
@@ -60,11 +64,13 @@ def main():
     archive = build / "liblvgl.a"
     run(["ar", "rcs", str(archive), *(str(path) for path in objects)])
     executable = build / "native_smoke"
+    test = "native_ssd1306.cpp" if args.example == "ssd1306" else "native_smoke.cpp"
     run(["g++", "-std=c++11", "-Wall", "-Wextra", *flags, "-I" + str(root / "runtime"), "-I" + str(build),
-         str(root / "tests/native_smoke.cpp"), str(root / "runtime/EspHtmlUi.cpp"), str(build / "counter.cpp"),
+         str(root / "tests" / test), str(root / "runtime/EspHtmlUi.cpp"), str(build / f"{name}.cpp"),
          str(archive), "-lm", "-o", str(executable)])
-    print(run([str(executable), str(build / "counter.ppm")]), end="")
-    print(f"Rendered preview: {build / 'counter.ppm'}")
+    preview = build / ("ssd1306.pbm" if args.example == "ssd1306" else "counter.ppm")
+    print(run([str(executable), str(preview)]), end="")
+    print(f"Rendered preview: {preview}")
 
 
 if __name__ == "__main__":

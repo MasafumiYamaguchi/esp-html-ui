@@ -2,6 +2,10 @@
 
 対象: 0.1のコンパイラ基礎実装。全体の完成範囲は[仕様書](spec.md)を参照。
 
+コンパイラとC++ランタイムはLVGL経由でディスプレイへ接続する。
+T-Display S3のカラー液晶とESP32＋SSD1306の白黒OLED向けサンプルを用意している。
+基板ごとの設定と実機確認の範囲は[ディスプレイへの組み込み](displays.md)を参照。
+
 機械可読の一覧は`esp-html-ui support`、元データは[src/esp_html_ui/capabilities.json](../src/esp_html_ui/capabilities.json)。未対応のタグ、属性、プロパティ、使用する値は診断する。
 
 ## 実装済みタグ

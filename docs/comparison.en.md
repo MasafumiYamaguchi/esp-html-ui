@@ -2,7 +2,7 @@
 
 [日本語](comparison.md) | [English](comparison.en.md)
 
-esp-html-ui generates C++ for LVGL from HTML/CSS, with an integration workflow for T-Display S3.
+esp-html-ui generates C++ for LVGL from HTML/CSS, with integration examples for ESP32 displays.
 It is intended for editing screen structure and styles as text while writing interaction logic in C++.
 This comparison separates authoring format, generated code, and what runs on the device.
 
@@ -14,7 +14,7 @@ Suggested use cases are judgments based on the documented development approaches
 
 | Option | UI input | Generation or execution model | A reason to choose it |
 | --- | --- | --- | --- |
-| **esp-html-ui 0.1** | A defined subset of HTML/CSS | Generates C++ at build time. The device runs generated code, the project's C++ runtime, LVGL, and the display driver | Edit label-and-button screens in HTML/CSS and integrate them into a T-Display S3 C++ application |
+| **esp-html-ui 0.1** | A defined subset of HTML/CSS | Generates C++ at build time. The device runs generated code, the project's C++ runtime, LVGL, and the display driver | Edit label-and-button screens in HTML/CSS and integrate them into an ESP32 C++ application |
 | [LVGL C API](https://lvgl.io/docs/open/9.4/details/widgets/index.html) | Widgets and styles defined in C/C++ | The application calls LVGL directly | Work directly with LVGL widgets and styles |
 | [SquareLine Studio](https://docs.squareline.io/docs/introduction/typical_dev/) | Widgets, styles, and events configured in a GUI | Exports C files for screens, images, fonts, and other assets for integration into an application | Edit layout and events visually |
 | [EEZ Studio](https://www.envox.eu/studio/studio-introduction/) | Visual editor with LVGL and LVGL + Flow project types | Creates LVGL screens; optional EEZ Flow also provides visual logic authoring | Edit screens and logic flow in an editor |
@@ -36,20 +36,23 @@ Verification steps can also be shared within the repository.
 The [hardware test tools](hardware-testing.md) (Japanese) cover input injection, screen creation and destruction, display memory readback, and rendering capture.
 These are verification facilities provided by this project, rather than evidence of a performance advantage over other tools.
 
+An [example and porting guide](displays.en.md) also cover ESP32 + SSD1306 monochrome OLEDs at 128 × 64.
+The SSD1306 example has passed build and host-rendering checks; physical OLED output has not yet been tested.
+
 ## Shared capabilities and different inputs
 
 Several tools support code generation and build automation.
 The [SquareLine Studio CLI](https://docs.squareline.io/docs/commandline/) can automate project exports.
 [LVGL Pro code generation](https://lvgl.io/docs/pro/integration/using-exported-c-code) works through both the editor and CLI; when using generated C, XML files do not need to remain on the device.
-esp-html-ui's approach is to parse HTML/CSS and resolve CSS on the host, then integrate generated C++ into the T-Display S3 build.
+esp-html-ui's approach is to parse HTML/CSS and resolve CSS on the host, then integrate generated C++ into an ESP32 build.
 
 Using HTML/CSS as UI input is also not unique to esp-html-ui.
 The [official Evue README](https://github.com/scriptiot/evue) describes conversion from HTML/CSS-based input to Python or JavaScript.
-esp-html-ui implements C++ generation with a defined HTML/CSS subset and a T-Display S3 integration workflow.
+esp-html-ui implements C++ generation with a defined HTML/CSS subset and integration workflows for color displays and monochrome OLEDs.
 
 ## Current scope
 
-If you know HTML/CSS and want to add value displays or buttons to a T-Display S3, the esp-html-ui examples provide a starting point.
+If you know HTML/CSS and want to add value displays or buttons to an ESP32 display, the esp-html-ui examples provide a starting point.
 They cover UI editing, updates from C++, flashing, and device verification.
 See the [supported tags and CSS](support.md) and [hardware test results](hardware-results-2026-10-15.md) (both in Japanese) for the implemented and verified scope.
 

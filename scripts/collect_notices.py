@@ -10,6 +10,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--lvgl", type=Path, required=True)
     parser.add_argument("--tft", type=Path, required=True)
+    parser.add_argument("--ssd1306", type=Path, required=True)
+    parser.add_argument("--gfx", type=Path, required=True)
+    parser.add_argument("--busio", type=Path, required=True)
     parser.add_argument("--webencodings-license", type=Path, required=True,
                         help="LICENSE from upstream v0.5.1; missing from PyPI wheel/sdist")
     args = parser.parse_args()
@@ -44,6 +47,17 @@ def main():
     save("tft_espi", (args.tft / "license.txt").read_bytes(), tft_version,
          "FreeBSD + MIT/BSD notices", "firmware",
          "TFT_eSPI 2.5.43 package: license.txt")
+    for name, directory, expected, license_name, filename, repository in [
+        ("adafruit_ssd1306", args.ssd1306, "2.5.15", "BSD-3-Clause", "license.txt", "Adafruit_SSD1306"),
+        ("adafruit_gfx", args.gfx, "1.12.1", "BSD-2-Clause", "license.txt", "Adafruit-GFX-Library"),
+        ("adafruit_busio", args.busio, "1.17.2", "MIT", "LICENSE", "Adafruit_BusIO"),
+    ]:
+        properties = dict(line.split("=", 1) for line in (directory / "library.properties").read_text().splitlines()
+                          if "=" in line and not line.startswith("#"))
+        if properties.get("version") != expected:
+            raise RuntimeError(f"Review {name} notices before changing pinned versions")
+        save(name, (directory / filename).read_bytes(), expected, license_name, "SSD1306 example firmware",
+             f"https://github.com/adafruit/{repository}/blob/{expected}/{filename}")
     tlsf = (args.lvgl / "src/stdlib/builtin/lv_tlsf.h").read_text()
     start = tlsf.index("/*\n** Two Level")
     end = tlsf.index("*/", start) + 2

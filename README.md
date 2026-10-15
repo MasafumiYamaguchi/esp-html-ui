@@ -2,13 +2,15 @@
 
 [日本語](README.md) | [English](README.en.md)
 
-HTML/CSSをLVGL用のC++へ変換する、**LILYGO T-Display S3向けのUIコンパイラ**です。
+HTML/CSSをLVGL用のC++へ変換する、**ESP32向けのUIコンパイラ**です。
 見た目をHTML/CSSで定義し、値の更新やクリック時の処理をC++で記述できます。
 HTML/CSSの解析はPC上のビルド時に行い、ESP32では生成コードとLVGLを動かします。
 
 現在は**開発初期のv0.1.0**です。
 ラベルとボタンを組み合わせたUIの生成、実機表示、物理ボタンによる操作までを実装しています。
 対応するHTML/CSSの範囲は下記の表と[対応一覧](docs/support.md)で確認できます。
+T-Display S3のカラー液晶に加え、**ESP32＋SSD1306（I²C、128×64）の白黒OLED**向けサンプルも用意しています。
+SSD1306はビルドとホスト描画を検証済みで、OLED実機での表示は未確認です。
 
 ![長文の折り返しとRGBの文字色を確認する、T-Display S3向けサンプル](docs/images/layout-check.png)
 
@@ -16,16 +18,16 @@ HTML/CSSの解析はPC上のビルド時に行い、ESP32では生成コード�
 実ボタンの操作と表示は、人による確認も行っています。
 [実機試験の結果](docs/hardware-results-2026-10-15.md)には、自動診断の数値と確認方法を記録しています。
 
-[クイックスタート](#クイックスタート) / [他のツールとの違い](#他のツールとの違い) / [対応一覧](docs/support.md) / [C++ API](docs/getting-started.md#c-api)
+[ディスプレイを選ぶ](#ディスプレイを選ぶ) / [クイックスタート](#クイックスタート) / [他のツールとの違い](#他のツールとの違い) / [C++ API](docs/getting-started.md#c-api)
 
 ## esp-html-uiを選ぶ理由
 
 **HTML/CSSで見た目を整え、C++で実機を動かす。**
-Webの記法でラベルとボタンの画面を編集し、T-Display S3へ組み込みたい用途を想定しています。
+Webの記法でラベルとボタンの画面を編集し、ESP32のディスプレイへ組み込むためのツールです。
 
 - **画面の変更をHTML/CSSの差分で確認できる。** 使い慣れたエディターで構造、色、余白を編集し、CSSの継承や変数でスタイルをまとめられます。
 - **アプリの処理をC++で保てる。** HTMLのIDからテキスト更新やクリック通知を扱えます。HTML/CSSの解析はビルド時に済ませ、実機では生成したC++とLVGLを動かします。
-- **T-Display S3で試す手順が揃っている。** PlatformIOのビルド前に自動変換し、液晶と物理ボタンの設定を含むサンプルを書き込めます。[自動診断と描画データの回収](docs/hardware-testing.md)も同じリポジトリで実行できます。
+- **カラー液晶と白黒OLEDのサンプルから始められる。** PlatformIOのビルド前に自動変換し、解像度と表示ドライバをアプリ側で設定します。T-Display S3には[自動診断と描画データの回収](docs/hardware-testing.md)も用意しています。
 
 ## 他のツールとの違い
 
@@ -34,14 +36,14 @@ Webの記法でラベルとボタンの画面を編集し、T-Display S3へ組�
 
 | 選択肢 | 主なUIの記述方法 | アプリへの組み込み方 |
 | --- | --- | --- |
-| **esp-html-ui** | **対応範囲を定めたHTML/CSS** | **LVGL用C++へ変換。T-Display S3向けPlatformIOサンプルを同梱** |
+| **esp-html-ui** | **対応範囲を定めたHTML/CSS** | **LVGL用C++へ変換。T-Display S3とESP32＋SSD1306向けサンプルを同梱** |
 | [SquareLine Studio](https://docs.squareline.io/docs/introduction/typical_dev/) | GUIでウィジェットとイベントを設定 | LVGL用C/C++などを出力 |
 | [EEZ Studio](https://www.envox.eu/studio/studio-introduction/) | ビジュアルエディター。EEZ Flowも選択可能 | LVGL向けの画面を作成し、Flowで処理を記述する構成も選べる |
 | [LVGL Pro](https://lvgl.io/docs/pro/integration/using-exported-c-code) | XMLをエディターやCLIで扱う | XMLからLVGL用Cを生成 |
 | [lvgljs](https://github.com/lvgl/lv_binding_js) | JavaScriptとReactの考え方による記述 | JavaScript実行環境とLVGLバインディングを使う |
 
 コード生成やCLIによる自動化は他のツールにもあります。
-esp-html-uiは、**HTML/CSSを入力にして、C++の操作処理とT-Display S3のビルドにつなぐ流れ**に重点を置いています。
+esp-html-uiは、**HTML/CSSを入力にして、C++の操作処理とESP32のビルドにつなぐ流れ**に重点を置いています。
 現在の用途はラベルとボタンを中心とした画面です。
 画像、多言語表示、豊富な入力部品、GUI上での編集が必要な場合は、各ツールの対応機能も検討してください。
 HTML/CSSを扱うEvueとの違い、各ツールの選び方、確認した公式資料は[詳しい比較](docs/comparison.md)にまとめています。
@@ -65,6 +67,19 @@ JavaScriptは実行せず、操作時の処理はC++側で実装します。
 現時点では、日本語フォント、画像、テキスト入力や選択部品、Grid、動的なCSS擬似クラス、CSSアニメーションは未対応です。
 対応する値や単位、ブラウザとの違いは[対応一覧](docs/support.md)、今後の設計案は[仕様書](docs/spec.md)を参照してください。
 
+## ディスプレイを選ぶ
+
+コンパイラとC++ランタイムはディスプレイ非依存です。
+LVGLの表示ドライバと解像度をアプリ側で接続します。
+
+| 構成 | サンプル | 確認範囲 |
+| --- | --- | --- |
+| LILYGO T-Display S3、ST7789、320×170 | [counter](examples/counter)、[layout-check](examples/layout-check) | ビルド、ホスト描画、実機表示と物理ボタン |
+| ESP32 Dev Module＋I²C SSD1306、128×64 | [ssd1306](examples/ssd1306) | ビルド、ホスト描画と画素変換。OLED実機は未確認 |
+
+SSD1306の配線、書き込み、他のディスプレイへの移植は[ディスプレイへの組み込み](docs/displays.md)を参照してください。
+以下のクイックスタートでは、実機検証済みのT-Display S3を使います。
+
 ## クイックスタート
 
 ### 必要なもの
@@ -74,7 +89,7 @@ JavaScriptは実行せず、操作時の処理はC++側で実装します。
 - Python 3.10以上とGit。
 - 初回の依存ライブラリとツールチェーンのダウンロードに使うインターネット接続。
 
-このリポジトリのボード設定と実機試験は、標準のT-Display S3を対象にしています。
+このクイックスタートのボード設定と実機試験は、標準のT-Display S3を対象にしています。
 AMOLED版など別のディスプレイを搭載したモデルには、別の設定が必要です。
 
 ### 1. 開発環境を用意する
@@ -145,6 +160,7 @@ HTML/CSSからの生成はビルド前に毎回行い、生成コードをファ
 | --- | --- | --- |
 | [counter](examples/counter) | 加算、リセット、フォーカス移動 | [ui.html](examples/counter/ui.html)、[ui.css](examples/counter/ui.css) |
 | [layout-check](examples/layout-check) | 長文の折り返し、RGBの文字色、ボタン配置 | [ui.html](examples/layout-check/ui.html)、[ui.css](examples/layout-check/ui.css) |
+| [ssd1306](examples/ssd1306) | 128×64の白黒画面、シリアル入力による加算とリセット | [ui.html](examples/ssd1306/ui.html)、[ui.css](examples/ssd1306/ui.css) |
 
 冒頭の表示確認サンプルを書き込む場合:
 
@@ -163,13 +179,14 @@ ui.html + ui.css
        ↓ PC上で構文解析、CSSの解決、対応範囲の検証
 生成したC++ + JSONの生成記録
        ↓ PlatformIOでコンパイル
-ESP32上のLVGL + TFT_eSPI
+ESP32上のLVGL + 表示ドライバ
        ↓
-T-Display S3の液晶と物理ボタン
+カラー液晶 / 白黒OLED、アプリ側の入力
 ```
 
 HTML解析にはhtml5lib、CSS解析にはtinycss2、セレクター照合にはcssselect2を使います。
-生成した画面の描画とレイアウト、入力はLVGLが担当し、液晶への転送にはTFT_eSPIを使います。
+生成した画面の描画とレイアウト、入力はLVGLが担当します。
+T-Display S3ではTFT_eSPI、SSD1306ではAdafruit SSD1306で表示へ転送します。
 
 実機を接続せず、HTML/CSSからの変換だけを試すこともできます。
 
@@ -204,6 +221,7 @@ python -m unittest discover -s tests -v
 | --- | --- |
 | [ビルドと使い方](docs/getting-started.md) | セットアップ、生成ファイル、固定した主要依存、C++ API |
 | [現在の対応状況](docs/support.md) | タグ、属性、CSSの値と制約、ブラウザとの違い |
+| [ディスプレイへの組み込み](docs/displays.md) | SSD1306の配線と操作、解像度設定、他の表示への移植 |
 | [他のUI開発ツールとの比較](docs/comparison.md) | 記述形式、コード生成と実行方式、用途ごとの選び方 |
 | [仕様と完成条件](docs/spec.md) | プロジェクトの目標と今後の設計案 |
 | [T-Display S3の実機試験](docs/hardware-testing.md) | 診断用ファームウェア、ログと画像の回収、手押し試験 |

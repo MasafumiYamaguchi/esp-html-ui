@@ -13,6 +13,9 @@ The selected compiler and GUI dependency notices are preserved in [third_party/n
 | LVGL bundled TLSF | BSD-3-Clause | Firmware allocator |
 | LVGL bundled printf | MIT | Firmware formatting |
 | TFT_eSPI 2.5.43 | FreeBSD and inherited MIT/BSD notices | Firmware display driver |
+| Adafruit SSD1306 2.5.15 | BSD-3-Clause | SSD1306 example display driver |
+| Adafruit GFX Library 1.12.1 | BSD-2-Clause | SSD1306 example driver dependency |
+| Adafruit BusIO 1.17.2 | MIT | SSD1306 example driver dependency |
 | Montserrat font data | SIL OFL 1.1 | LVGL built-in font data |
 | Font Awesome 5 font data | SIL OFL 1.1; upstream notice includes other asset categories | Symbols bundled in LVGL's Montserrat font arrays |
 
