@@ -1,0 +1,11 @@
+.pio/
+.build/
+__pycache__/
+.vscode/
+.venv/
+*.pyc
+generated/
+dist/
+.env
+.env.*
+!.env.example
