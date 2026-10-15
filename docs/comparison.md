@@ -1,5 +1,7 @@
 # 他のUI開発ツールとの比較
 
+[日本語](comparison.md) | [English](comparison.en.md)
+
 esp-html-uiは、HTML/CSSからT-Display S3向けのLVGL用C++を生成するツールである。
 画面の構造とスタイルをテキストで編集し、操作時の処理をC++で書く用途に向いている。
 比較では、入力する形式、生成するコード、実機上で動かすものを分けて考える。

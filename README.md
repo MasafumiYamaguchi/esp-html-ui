@@ -1,5 +1,7 @@
 # esp-html-ui
 
+[日本語](README.md) | [English](README.en.md)
+
 HTML/CSSをLVGL用のC++へ変換する、**LILYGO T-Display S3向けのUIコンパイラ**です。
 見た目をHTML/CSSで定義し、値の更新やクリック時の処理をC++で記述できます。
 HTML/CSSの解析はPC上のビルド時に行い、ESP32では生成コードとLVGLを動かします。
