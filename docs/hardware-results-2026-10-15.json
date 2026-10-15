@@ -256,5 +256,14 @@
     "esptool_hash_verified": true,
     "boot_observation_seconds": 10,
     "boot_errors_recorded": false
+  },
+  "human_confirmation": {
+    "date": "2026-10-15",
+    "timezone": "Asia/Tokyo",
+    "source": "user response to physical-operation and optical-inspection question",
+    "response": "操作と表示はどちらも正常",
+    "physical_operation": "confirmed_normal",
+    "optical_inspection": "confirmed_normal",
+    "serial_edges_captured_during_manual_window": false
   }
 }
