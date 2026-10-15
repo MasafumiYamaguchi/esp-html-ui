@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Orbit dashboard</title>
+    <link rel="stylesheet" href="ui.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span id="logo" class="logo">orbit</span>
+        <span id="breadcrumb" class="breadcrumb">/ overview</span>
+      </div>
+      <span class="badge">DEMO</span>
+    </header>
+    <main>
+      <aside>
+        <span class="active">UI</span>
+        <span class="board">S3</span>
+      </aside>
+      <section class="panel">
+        <div class="section-heading">
+          <span>Workspace</span>
+          <span class="healthy">All systems OK</span>
+        </div>
+        <section class="cards">
+          <article class="card">
+            <span class="caption">Requests</span>
+            <span id="requests" class="metric">1,284</span>
+          </article>
+          <article class="card">
+            <span class="caption">Latency</span>
+            <div class="latency-reading">
+              <span id="latency" class="metric">28</span>
+              <span class="unit">ms</span>
+            </div>
+          </article>
+        </section>
+        <nav class="actions">
+          <button id="refresh" type="button">Refresh</button>
+          <button id="pause" type="button">Pause</button>
+        </nav>
+      </section>
+    </main>
+    <footer>
+      <span>HTML + CSS / LVGL</span>
+      <span id="mode">AUTO / 2s</span>
+    </footer>
+  </body>
+</html>

@@ -160,6 +160,7 @@ HTML/CSSからの生成はビルド前に毎回行い、生成コードをファ
 | --- | --- | --- |
 | [counter](examples/counter) | 加算、リセット、フォーカス移動 | [ui.html](examples/counter/ui.html)、[ui.css](examples/counter/ui.css) |
 | [layout-check](examples/layout-check) | 長文の折り返し、RGBの文字色、ボタン配置 | [ui.html](examples/layout-check/ui.html)、[ui.css](examples/layout-check/ui.css) |
+| [web-dashboard](examples/web-dashboard) | Web風のカードUI、デモ値の自動更新、Refresh／Pause | [ui.html](examples/web-dashboard/ui.html)、[ui.css](examples/web-dashboard/ui.css) |
 | [ssd1306](examples/ssd1306) | 128×64の白黒画面、シリアル入力による加算とリセット | [ui.html](examples/ssd1306/ui.html)、[ui.css](examples/ssd1306/ui.css) |
 
 冒頭の表示確認サンプルを書き込む場合:

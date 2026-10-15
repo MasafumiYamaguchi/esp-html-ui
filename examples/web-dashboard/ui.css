@@ -1,0 +1,34 @@
+:root {
+  --ink: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --surface: #ffffff;
+}
+
+body { width: 100%; height: 100%; color: var(--ink); background-color: #e9eef5; font-size: 14px; }
+.topbar { flex-direction: row; align-items: center; justify-content: space-between; height: 32px; padding: 0 10px; background-color: var(--ink); color: white; }
+.brand { flex-direction: row; align-items: center; width: 206px; height: 24px; gap: 8px; }
+.logo { width: 60px; font-size: 20px; white-space: nowrap; }
+.breadcrumb { width: 108px; color: #94a3b8; white-space: nowrap; }
+.badge { width: 58px; padding: 2px 4px; border-radius: 4px; background-color: #164e46; color: #99f6e4; text-align: center; }
+main { flex-direction: row; height: 120px; padding: 8px; gap: 8px; }
+aside { width: 30px; height: 104px; gap: 8px; }
+aside span { width: 30px; text-align: center; }
+.active { height: 28px; padding-top: 6px; border-radius: 6px; color: var(--accent); background-color: #dbeafe; }
+.board { color: var(--muted); }
+.panel { width: 266px; height: 104px; gap: 4px; }
+.section-heading { flex-direction: row; justify-content: space-between; align-items: center; height: 16px; }
+.healthy { color: #047857; }
+.cards { flex-direction: row; height: 54px; gap: 8px; }
+.card { width: 129px; height: 54px; padding: 6px; border-radius: 7px; background-color: var(--surface); }
+.caption { height: 16px; color: var(--muted); }
+.metric { height: 26px; font-size: 24px; }
+.latency-reading { flex-direction: row; height: 26px; align-items: center; gap: 4px; }
+#latency { width: 36px; }
+.unit { color: var(--muted); }
+.actions { flex-direction: row; height: 26px; gap: 8px; }
+.actions button { width: 129px; height: 26px; border-radius: 6px; }
+#refresh { color: white; background-color: var(--accent); }
+#pause { background-color: var(--surface); border-width: 1px; border-color: #cbd5e1; }
+footer { height: 18px; padding: 0 10px; flex-direction: row; align-items: center; justify-content: space-between; background-color: var(--surface); color: var(--muted); }
+#mode { color: var(--accent); }

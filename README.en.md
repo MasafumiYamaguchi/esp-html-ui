@@ -160,6 +160,7 @@ Code generation runs before every build, and the generated code is compiled into
 | --- | --- | --- |
 | [counter](examples/counter) | Increment, reset, and focus navigation | [ui.html](examples/counter/ui.html), [ui.css](examples/counter/ui.css) |
 | [layout-check](examples/layout-check) | Long text wrapping, RGB text colors, and button layout | [ui.html](examples/layout-check/ui.html), [ui.css](examples/layout-check/ui.css) |
+| [web-dashboard](examples/web-dashboard) | Web-style cards, automatic demo updates, Refresh/Pause controls | [ui.html](examples/web-dashboard/ui.html), [ui.css](examples/web-dashboard/ui.css) |
 | [ssd1306](examples/ssd1306) | 128 × 64 monochrome layout, increment and reset over serial | [ui.html](examples/ssd1306/ui.html), [ui.css](examples/ssd1306/ui.css) |
 
 To flash the layout sample shown above:
