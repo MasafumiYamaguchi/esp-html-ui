@@ -14,7 +14,35 @@ HTML/CSSの解析はPC上のビルド時に行い、ESP32では生成コード�
 実ボタンの操作と表示は、人による確認も行っています。
 [実機試験の結果](docs/hardware-results-2026-10-15.md)には、自動診断の数値と確認方法を記録しています。
 
-[クイックスタート](#クイックスタート) / [対応一覧](docs/support.md) / [C++ API](docs/getting-started.md#c-api) / [実機試験](docs/hardware-testing.md)
+[クイックスタート](#クイックスタート) / [他のツールとの違い](#他のツールとの違い) / [対応一覧](docs/support.md) / [C++ API](docs/getting-started.md#c-api)
+
+## esp-html-uiを選ぶ理由
+
+**HTML/CSSで見た目を整え、C++で実機を動かす。**
+Webの記法でラベルとボタンの画面を編集し、T-Display S3へ組み込みたい用途を想定しています。
+
+- **画面の変更をHTML/CSSの差分で確認できる。** 使い慣れたエディターで構造、色、余白を編集し、CSSの継承や変数でスタイルをまとめられます。
+- **アプリの処理をC++で保てる。** HTMLのIDからテキスト更新やクリック通知を扱えます。HTML/CSSの解析はビルド時に済ませ、実機では生成したC++とLVGLを動かします。
+- **T-Display S3で試す手順が揃っている。** PlatformIOのビルド前に自動変換し、液晶と物理ボタンの設定を含むサンプルを書き込めます。[自動診断と描画データの回収](docs/hardware-testing.md)も同じリポジトリで実行できます。
+
+## 他のツールとの違い
+
+比較の軸は、画面を記述する形式とアプリへの組み込み方です。
+2026年10月15日時点の公式文書をもとに整理しています。
+
+| 選択肢 | 主なUIの記述方法 | アプリへの組み込み方 |
+| --- | --- | --- |
+| **esp-html-ui** | **対応範囲を定めたHTML/CSS** | **LVGL用C++へ変換。T-Display S3向けPlatformIOサンプルを同梱** |
+| [SquareLine Studio](https://docs.squareline.io/docs/introduction/typical_dev/) | GUIでウィジェットとイベントを設定 | LVGL用C/C++などを出力 |
+| [EEZ Studio](https://www.envox.eu/studio/studio-introduction/) | ビジュアルエディター。EEZ Flowも選択可能 | LVGL向けの画面を作成し、Flowで処理を記述する構成も選べる |
+| [LVGL Pro](https://lvgl.io/docs/pro/integration/using-exported-c-code) | XMLをエディターやCLIで扱う | XMLからLVGL用Cを生成 |
+| [lvgljs](https://github.com/lvgl/lv_binding_js) | JavaScriptとReactの考え方による記述 | JavaScript実行環境とLVGLバインディングを使う |
+
+コード生成やCLIによる自動化は他のツールにもあります。
+esp-html-uiは、**HTML/CSSを入力にして、C++の操作処理とT-Display S3のビルドにつなぐ流れ**に重点を置いています。
+現在の用途はラベルとボタンを中心とした画面です。
+画像、多言語表示、豊富な入力部品、GUI上での編集が必要な場合は、各ツールの対応機能も検討してください。
+HTML/CSSを扱うEvueとの違い、各ツールの選び方、確認した公式資料は[詳しい比較](docs/comparison.md)にまとめています。
 
 ## できること
 
@@ -174,6 +202,7 @@ python -m unittest discover -s tests -v
 | --- | --- |
 | [ビルドと使い方](docs/getting-started.md) | セットアップ、生成ファイル、固定した主要依存、C++ API |
 | [現在の対応状況](docs/support.md) | タグ、属性、CSSの値と制約、ブラウザとの違い |
+| [他のUI開発ツールとの比較](docs/comparison.md) | 記述形式、コード生成と実行方式、用途ごとの選び方 |
 | [仕様と完成条件](docs/spec.md) | プロジェクトの目標と今後の設計案 |
 | [T-Display S3の実機試験](docs/hardware-testing.md) | 診断用ファームウェア、ログと画像の回収、手押し試験 |
 | [実機試験の結果](docs/hardware-results-2026-10-15.md) | 測定値、描画画像、人による確認結果 |
