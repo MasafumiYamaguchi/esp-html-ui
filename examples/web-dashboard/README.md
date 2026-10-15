@@ -8,7 +8,8 @@ This image is rendered by LVGL on the host, rather than photographed from the di
 ## 日本語
 
 T-Display S3の320×170画面に、ヘッダー、サイドバー、数値カード、操作ボタンを配置するサンプルです。
-見た目は[ui.html](ui.html)と[ui.css](ui.css)、デモ値の更新とイベント処理は[DashboardDemo.h](src/DashboardDemo.h)で定義しています。
+見た目は[ui.html](ui.html)と[ui.css](ui.css)、デモ値の更新とイベント処理は[DashboardDemo.cpp](src/DashboardDemo.cpp)に実装しています。
+[DashboardDemo.h](src/DashboardDemo.h)にはクラス宣言とメンバー変数を置いています。
 RequestsとLatencyはデモ値であり、ネットワークやセンサーの測定値ではありません。
 
 リポジトリの開発環境を用意し、ルートから実行します。
@@ -39,7 +40,8 @@ python scripts/test_native.py --lvgl examples/counter/.pio/libdeps/t-display-s3/
 ## English
 
 A 320 × 170 T-Display S3 example with a navigation header, sidebar, metric cards, and action buttons.
-Edit the appearance in [ui.html](ui.html) and [ui.css](ui.css); [DashboardDemo.h](src/DashboardDemo.h) handles demo data and events.
+Edit the appearance in [ui.html](ui.html) and [ui.css](ui.css); [DashboardDemo.cpp](src/DashboardDemo.cpp) implements demo data updates and event handling.
+[DashboardDemo.h](src/DashboardDemo.h) contains the class declaration and member variables.
 Requests and Latency are simulated values, rather than network or sensor measurements.
 
 Set up the repository's development environment, then run the upload command above from the repository root.

@@ -71,8 +71,10 @@ def main():
     archive = build / "liblvgl.a"
     run(["ar", "rcs", str(archive), *(str(path) for path in objects)])
     executable = build / "native_smoke"
+    example_sources = sorted(path for path in (example / "src").glob("*.cpp") if path.name != "main.cpp")
     run(["g++", "-std=c++11", "-Wall", "-Wextra", *flags, "-I" + str(root / "runtime"), "-I" + str(build),
          str(root / "tests" / test), str(root / "runtime/EspHtmlUi.cpp"), str(build / f"{name}.cpp"),
+         *(str(path) for path in example_sources),
          str(archive), "-lm", "-o", str(executable)])
     preview = build / preview_name
     print(run([str(executable), str(preview)]), end="")
