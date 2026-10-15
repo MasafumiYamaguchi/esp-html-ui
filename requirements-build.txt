@@ -1,0 +1,2 @@
+# Firmware build tool; UI compiler dependencies are pinned in pyproject.toml.
+platformio==6.1.18

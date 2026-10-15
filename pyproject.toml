@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68,<81"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "esp-html-ui"
+version = "0.1.0"
+description = "Compile HTML/CSS to LVGL C++ for ESP32 displays"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "html5lib==1.1",
+  "tinycss2==1.4.0",
+  "cssselect2==0.8.0",
+  "six==1.17.0",
+  "webencodings==0.5.1",
+]
+
+[project.scripts]
+esp-html-ui = "esp_html_ui.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+esp_html_ui = ["capabilities.json"]

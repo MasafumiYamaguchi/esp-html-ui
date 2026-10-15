@@ -1,0 +1,110 @@
+{
+  "additional_review": [
+    "Arduino-ESP32 LGPL-2.1-or-later components",
+    "ESP-IDF SDK and bundled/precompiled libraries",
+    "C/C++ runtime libraries and toolchain notices",
+    "Build and upload tools; any newly enabled LVGL modules"
+  ],
+  "components": [
+    {
+      "license": "MIT",
+      "name": "html5lib",
+      "notice": "notices/html5lib.txt",
+      "scope": "host compiler",
+      "sha256": "16a39991619e92f18680932da2a9199fdf7d95df3ecaedc52ea06218aabafd6f",
+      "source": "PyPI html5lib==1.1: html5lib-1.1.dist-info/LICENSE",
+      "version": "1.1"
+    },
+    {
+      "license": "BSD-3-Clause",
+      "name": "tinycss2",
+      "notice": "notices/tinycss2.txt",
+      "scope": "host compiler",
+      "sha256": "6b94acee20ec9f2709333134f3ba70322535fb420af0ce8c1455d9cbe297f1d5",
+      "source": "PyPI tinycss2==1.4.0: tinycss2-1.4.0.dist-info/LICENSE",
+      "version": "1.4.0"
+    },
+    {
+      "license": "BSD-3-Clause",
+      "name": "cssselect2",
+      "notice": "notices/cssselect2.txt",
+      "scope": "host compiler",
+      "sha256": "6fd97229a1d1b0f6a8b41e109f413426dbc0874b1e03746d66cc33282601c2c2",
+      "source": "PyPI cssselect2==0.8.0: cssselect2-0.8.0.dist-info/licenses/LICENSE",
+      "version": "0.8.0"
+    },
+    {
+      "license": "MIT",
+      "name": "six",
+      "notice": "notices/six.txt",
+      "scope": "host compiler",
+      "sha256": "4375ba20e2b9c6c4e7cad2940a628fd90e95cc3d50ee92aae755715d8ba1fbd0",
+      "source": "PyPI six==1.17.0: six-1.17.0.dist-info/LICENSE",
+      "version": "1.17.0"
+    },
+    {
+      "license": "BSD-3-Clause",
+      "name": "webencodings",
+      "notice": "notices/webencodings.txt",
+      "scope": "host compiler",
+      "sha256": "f23bae6ada76095610a77137fb92aec7342723900211c5826d54b4c57907ca56",
+      "source": "https://github.com/gsnedders/python-webencodings/blob/fa2cb5d75ab41e63ace691bc0825d3432ba7d694/LICENSE",
+      "version": "0.5.1"
+    },
+    {
+      "license": "MIT",
+      "name": "lvgl",
+      "notice": "notices/lvgl.txt",
+      "scope": "firmware",
+      "sha256": "27a80bd36832ab42d35ad60c08b2b230a807a9bc0d58e94ec1531543dc49cbe8",
+      "source": "https://github.com/lvgl/lvgl/blob/v9.4.0/LICENCE.txt",
+      "version": "9.4.0"
+    },
+    {
+      "license": "FreeBSD + MIT/BSD notices",
+      "name": "tft_espi",
+      "notice": "notices/tft_espi.txt",
+      "scope": "firmware",
+      "sha256": "f79bffc86315004815e4e7f11a23e757de0f25793022e6020938e2db1a495a9d",
+      "source": "TFT_eSPI 2.5.43 package: license.txt",
+      "version": "2.5.43"
+    },
+    {
+      "license": "BSD-3-Clause",
+      "name": "lvgl_tlsf",
+      "notice": "notices/lvgl_tlsf.txt",
+      "scope": "firmware",
+      "sha256": "a7f929d3fde21a8ce1cca2069dd061764bcdb3297d8a1cf99dbc9ad6d0a7a05c",
+      "source": "LVGL v9.4.0: src/stdlib/builtin/lv_tlsf.h copyright/license comment",
+      "version": "9.4.0"
+    },
+    {
+      "license": "MIT",
+      "name": "lvgl_printf",
+      "notice": "notices/lvgl_printf.txt",
+      "scope": "firmware",
+      "sha256": "ec49d3c5a052dba6392f3e5e6d51134d102624c19afab6b3dd9ff8921d85403d",
+      "source": "LVGL v9.4.0: src/stdlib/builtin/LICENSE_SPRINTF.txt",
+      "version": "9.4.0"
+    },
+    {
+      "license": "OFL-1.1 (font data)",
+      "name": "montserrat",
+      "notice": "notices/montserrat.txt",
+      "scope": "firmware fonts",
+      "sha256": "41f82bb4d24b304f30f7136bc47abdd083782e4265c984160f5649d1e78ea49c",
+      "source": "LVGL v9.4.0: scripts/built_in_font/font_license/Montserrat/OFL.txt",
+      "version": "bundled with LVGL 9.4.0"
+    },
+    {
+      "license": "OFL-1.1 (font data)",
+      "name": "fontawesome5",
+      "notice": "notices/fontawesome5.txt",
+      "scope": "firmware fonts",
+      "sha256": "de784a808496d49f5f80dd9d1d6e9a51cff712cfbc339e7c25155631ae3cdb5d",
+      "source": "LVGL v9.4.0: scripts/built_in_font/font_license/FontAwesome5/LICENSE.txt",
+      "version": "bundled with LVGL 9.4.0"
+    }
+  ],
+  "status": "Compiler and selected GUI components; not a complete firmware distribution audit"
+}

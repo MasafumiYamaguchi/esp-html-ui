@@ -1,0 +1,25 @@
+{
+  "milestone": "0.1 compiler foundation",
+  "lvgl": "9.4.0",
+  "fonts": [14, 16, 20, 24, 32],
+  "tags": {
+    "html": "document", "head": "metadata", "meta": "metadata", "title": "metadata",
+    "link": "stylesheet", "style": "stylesheet", "body": "container",
+    "div": "container", "main": "container", "section": "container", "article": "container",
+    "header": "container", "footer": "container", "nav": "container", "aside": "container",
+    "h1": "label", "h2": "label", "h3": "label", "h4": "label", "h5": "label", "h6": "label",
+    "p": "label", "span": "label", "label": "label", "output": "label", "button": "button"
+  },
+  "css": [
+    "display", "width", "height", "box-sizing", "color", "background-color", "opacity",
+    "padding", "padding-top", "padding-right", "padding-bottom", "padding-left",
+    "gap", "row-gap", "column-gap", "border-width", "border-color", "border-radius",
+    "flex-direction", "flex-wrap", "flex-grow", "justify-content", "align-items", "align-content",
+    "font-size", "text-align", "white-space", "text-overflow", "overflow"
+  ],
+  "planned": {
+    "tags": ["strong", "b", "em", "i", "small", "br", "hr", "pre", "code", "ul", "ol", "li", "dl", "dt", "dd", "img", "figure", "figcaption", "a", "form", "fieldset", "legend", "input", "textarea", "select", "option", "optgroup", "progress", "meter", "table", "caption", "thead", "tbody", "tfoot", "tr", "th", "td", "details", "summary", "dialog", "ui-*"],
+    "css": ["margin", "min/max sizes", "grid-*", "flex-shrink", "flex-basis", "flex", "align-self", "order", "position", "insets", "z-index", "overflow-x/y", "visibility", "background images/gradients", "border shorthands/individual sides", "outline", "box-shadow", "font-family/weight/style", "line-height", "letter-spacing", "text-decoration", "object-fit/position", "transform", "transition", "animation", "@keyframes", "@media", "@font-face", "dynamic pseudo-classes", "dynamic classes", "LVGL part/state styles"],
+    "assets": ["images", "Japanese fonts", "font subsetting"]
+  }
+}

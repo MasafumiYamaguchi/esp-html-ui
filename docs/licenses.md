@@ -1,6 +1,28 @@
 # 依存候補とライセンス管理
 
-状態: 採用前の候補一覧。ライブラリのコードはこのリポジトリに同梱していない。
+状態: 0.1で採用した構成と、今後の候補を管理する。依存ライブラリ本体はpip / PlatformIOで取得し、必要な通知は[third_party](../third_party/dependencies.json)に保存している。
+
+## 0.1で採用した構成
+
+- ホスト: html5lib 1.1、tinycss2 1.4.0、cssselect2 0.8.0と、six 1.17.0、webencodings 0.5.1。
+- 描画: LVGL 9.4.0。内包するTLSF、printf、Montserrat、Font Awesomeの通知も保存。
+- 液晶ドライバ: TFT_eSPI 2.5.43。オプションのフォントパックは使わない。
+- 基板のフレームワーク: Arduino-ESP32 2.0.17（PlatformIOパッケージ3.20017.241212+sha.dcc1105b）、espressif32 6.9.0。
+
+Arduino APIにはLGPL-2.1-or-laterの部分がある。LVGLやコンパイラ依存のMIT/BSDとは別の条件として扱う。ファームウェアを配布する前に、Arduino・SDK・プリコンパイル済みライブラリ・C/C++ランタイムを含むリンク済み構成を棚卸しし、ソース提供・再リンクなど適用される条件を確認する。
+
+現在は開発用ソースを公開しており、ファームウェアバイナリのリリースは行っていない。採用したGUI依存の通知を揃えたことと、ファームウェア全体の配布監査が完了したことは区別する。
+
+通知の再収集は、依存をインストールした環境で実行する。
+
+```sh
+python scripts/collect_notices.py \
+  --lvgl examples/counter/.pio/libdeps/t-display-s3/lvgl \
+  --tft examples/counter/.pio/libdeps/t-display-s3/TFT_eSPI \
+  --webencodings-license third_party/notices/webencodings.txt
+```
+
+webencodings 0.5.1のPyPI wheel / sdistにはLICENSEが欠けているため、上流のv0.5.1のコミットから取得して保存した。元の参照先と通知のハッシュは依存一覧に記録している。
 
 ## 候補
 
@@ -15,7 +37,7 @@
 | フォント変換 | lv_font_conv | MIT | [LICENSE](https://github.com/lvgl/lv_font_conv/blob/master/LICENSE) |
 | 液晶ドライバ | TFT_eSPI | 独自部分はFreeBSD。MIT/BSD由来の部分やフォントに別の通知がある | [license.txt](https://github.com/Bodmer/TFT_eSPI/blob/master/license.txt) |
 
-LVGL v9.4.0のライセンス確認は、実装バージョンを決定したことを意味しない。液晶ドライバも、ビルド互換性とライセンスを確認したうえで選定する。
+上記の候補調査からLVGL 9.4.0とTFT_eSPI 2.5.43を選び、基板向けビルドを確認した。lv_font_convはアセット変換を実装する際の候補であり、現在の依存には含めていない。
 
 ## 採用・配布時のルール
 
