@@ -67,6 +67,7 @@ python scripts/test_native.py --lvgl examples/counter/.pio/libdeps/t-display-s3/
 - [仕様・対応範囲案・完成条件](docs/spec.md)
 - [実装済みタグ・属性・CSSと今後の対応](docs/support.md)
 - [ビルド・書き込み・C++ API](docs/getting-started.md)
+- [T-Display S3の実機試験と表示確認サンプル](docs/hardware-testing.md)
 - [依存候補とライセンス管理方針](docs/licenses.md)
 - [採用した依存のライセンス通知](THIRD_PARTY_NOTICES.md)
 
