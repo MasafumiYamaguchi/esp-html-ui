@@ -1,0 +1,260 @@
+{
+  "source_commit": "d0f39eb9fafc1364eef59e4b62f9400f6c02f830",
+  "device": "LILYGO T-Display S3 / ESP32-S3 revision v0.2 / 16 MB flash / 8 MB PSRAM",
+  "python_tests_passed": 32,
+  "results": {
+    "counter": {
+      "mode": "test",
+      "port": "/dev/cu.usbmodem2101",
+      "passed": true,
+      "started_at": "2026-10-15T12:45:52.720420+00:00",
+      "checks": {
+        "display_resolution": true,
+        "flash_16mb": true,
+        "psram_8mb_allocatable": true,
+        "display_power": true,
+        "ui_created": true,
+        "input_group_two": true,
+        "value": true,
+        "increment": true,
+        "reset": true,
+        "button_geometry": true,
+        "keypad_increment": true,
+        "keypad_next": true,
+        "keypad_reset": true,
+        "keypad_wrap": true,
+        "long_press_single_click": true,
+        "counter_overflow": true,
+        "disable": true,
+        "skip_disabled": true,
+        "hide": true,
+        "missing_id": true,
+        "ten_thousand_clicks": true,
+        "framebuffer_background": true,
+        "lcd_gram_readback": true,
+        "thousand_create_clear": true,
+        "lvgl_no_leak": true,
+        "heap_no_leak": true
+      },
+      "missing": [],
+      "failed": [],
+      "finished_at": "2026-10-15T12:46:31.274225+00:00"
+    },
+    "layout": {
+      "mode": "test",
+      "port": "/dev/cu.usbmodem2101",
+      "passed": true,
+      "layout_check": true,
+      "started_at": "2026-10-15T12:48:16.233137+00:00",
+      "checks": {
+        "display_resolution": true,
+        "flash_16mb": true,
+        "psram_8mb_allocatable": true,
+        "display_power": true,
+        "ui_created": true,
+        "input_group_two": true,
+        "value": true,
+        "increment": true,
+        "reset": true,
+        "button_geometry": true,
+        "description_wrapped": true,
+        "description_bounds": true,
+        "keypad_increment": true,
+        "keypad_next": true,
+        "keypad_reset": true,
+        "keypad_wrap": true,
+        "long_press_single_click": true,
+        "counter_overflow": true,
+        "disable": true,
+        "skip_disabled": true,
+        "hide": true,
+        "missing_id": true,
+        "ten_thousand_clicks": true,
+        "framebuffer_background": true,
+        "lcd_gram_readback": true,
+        "lcd_red": true,
+        "lcd_green": true,
+        "lcd_blue": true,
+        "thousand_create_clear": true,
+        "lvgl_no_leak": true,
+        "heap_no_leak": true
+      },
+      "missing": [],
+      "failed": [],
+      "finished_at": "2026-10-15T12:49:05.862194+00:00"
+    },
+    "soak": {
+      "mode": "soak",
+      "port": "/dev/cu.usbmodem2101",
+      "passed": true,
+      "layout_check": false,
+      "started_at": "2026-10-15T12:52:55.293503+00:00",
+      "rounds": 16,
+      "injected_keys": 64,
+      "elapsed_seconds": 33.02,
+      "baseline": {
+        "uptime": "1767",
+        "count": "0",
+        "focus": "increment",
+        "heap": "261192",
+        "minheap": "255888",
+        "lvfree": "84236",
+        "frag": "0",
+        "flushes": "9",
+        "pixels": "54400",
+        "key0": "1",
+        "key14": "1",
+        "failures": "0"
+      },
+      "final": {
+        "uptime": "34784",
+        "count": "0",
+        "focus": "increment",
+        "heap": "261192",
+        "minheap": "255884",
+        "lvfree": "84236",
+        "frag": "0",
+        "flushes": "169",
+        "pixels": "833152",
+        "key0": "1",
+        "key14": "1",
+        "failures": "0"
+      },
+      "memory": {
+        "heap": [
+          261192
+        ],
+        "lvfree": [
+          84236
+        ],
+        "frag": [
+          0
+        ]
+      },
+      "unexpected_reboot": false,
+      "finished_at": "2026-10-15T12:53:30.087027+00:00"
+    },
+    "reboots": {
+      "mode": "reboot",
+      "port": "/dev/cu.usbmodem2101",
+      "passed": true,
+      "layout_check": false,
+      "started_at": "2026-10-15T12:53:55.593439+00:00",
+      "trials": [
+        {
+          "ready": {
+            "reset": "3",
+            "chip": "ESP32-S3",
+            "cpu": "240",
+            "psram": "8386279",
+            "flash": "16777216",
+            "frame": "1"
+          },
+          "status": {
+            "uptime": "1502",
+            "count": "0",
+            "focus": "increment",
+            "heap": "261192",
+            "minheap": "255888",
+            "lvfree": "84236",
+            "frag": "0",
+            "flushes": "9",
+            "pixels": "54400",
+            "key0": "1",
+            "key14": "1",
+            "failures": "0"
+          },
+          "passed": true
+        },
+        {
+          "ready": {
+            "reset": "3",
+            "chip": "ESP32-S3",
+            "cpu": "240",
+            "psram": "8386279",
+            "flash": "16777216",
+            "frame": "1"
+          },
+          "status": {
+            "uptime": "1502",
+            "count": "0",
+            "focus": "increment",
+            "heap": "261192",
+            "minheap": "255888",
+            "lvfree": "84236",
+            "frag": "0",
+            "flushes": "9",
+            "pixels": "54400",
+            "key0": "1",
+            "key14": "1",
+            "failures": "0"
+          },
+          "passed": true
+        },
+        {
+          "ready": {
+            "reset": "3",
+            "chip": "ESP32-S3",
+            "cpu": "240",
+            "psram": "8386279",
+            "flash": "16777216",
+            "frame": "1"
+          },
+          "status": {
+            "uptime": "1502",
+            "count": "0",
+            "focus": "increment",
+            "heap": "261192",
+            "minheap": "255888",
+            "lvfree": "84236",
+            "frag": "0",
+            "flushes": "9",
+            "pixels": "54400",
+            "key0": "1",
+            "key14": "1",
+            "failures": "0"
+          },
+          "passed": true
+        }
+      ],
+      "finished_at": "2026-10-15T12:54:01.893978+00:00"
+    },
+    "manual": {
+      "mode": "manual",
+      "port": "/dev/cu.usbmodem2101",
+      "passed": false,
+      "started_at": "2026-10-15T12:43:33.721588+00:00",
+      "physical_sequence_passed": false,
+      "optical_confirmation": "unverified",
+      "physical_edges": [],
+      "sequence_stage": 0,
+      "observation_seconds": 120,
+      "status": "incomplete",
+      "finished_at": "2026-10-15T12:45:35.540168+00:00"
+    },
+    "frame": {
+      "mode": "frame",
+      "port": "/dev/cu.usbmodem2101",
+      "passed": true,
+      "layout_check": false,
+      "started_at": "2026-10-15T12:54:29.567651+00:00",
+      "width": 320,
+      "height": 170,
+      "bytes": 108800,
+      "image": "images/layout-check.png",
+      "kind": "rendered pixels, not a photograph",
+      "finished_at": "2026-10-15T12:54:31.838915+00:00"
+    }
+  },
+  "firmware_sha256": {
+    "diagnostic": "0677e4a2ad553a923ab911b8e47f2d9bde5c68c76577ec3a9faefe46fc8c7aa7",
+    "layout_standard": "4085d7a6b5dd6f496850f1b25952e3567245d5fe3c67ed5504de89beea02f214"
+  },
+  "final_firmware": {
+    "example": "examples/layout-check",
+    "diagnostic_commands": false,
+    "esptool_hash_verified": true,
+    "boot_observation_seconds": 10,
+    "boot_errors_recorded": false
+  }
+}
